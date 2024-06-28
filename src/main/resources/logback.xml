@@ -1,0 +1,25 @@
+<configuration>
+    <!-- Define the encoder for console logging -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Define the encoder for file logging -->
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>logs/spark-application.log</file>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Set the logging level and appenders -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
+    </root>
+
+    <!-- Example of setting a specific logger level -->
+    <logger name="org.apache.spark" level="WARN" />
+</configuration>
