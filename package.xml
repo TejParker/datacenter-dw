@@ -6,6 +6,7 @@
     <id>package</id>
     <formats>
         <format>tar.gz</format>
+<!--    <format>dir</format>不进行打包-->
     </formats>
     <includeBaseDirectory>true</includeBaseDirectory>
     <fileSets>
@@ -28,12 +29,40 @@
         </fileSet>
 
         <fileSet>
+            <directory>dx-common/target/common/lib/</directory>
+            <includes>
+                <include>*.jar</include>
+            </includes>
+            <outputDirectory>lib/common</outputDirectory>
+        </fileSet>
+
+        <fileSet>
+            <directory>dx-common/target/common/</directory>
+            <includes>
+                <include>*.jar</include>
+            </includes>
+            <outputDirectory>lib/common</outputDirectory>
+        </fileSet>
+
+        <fileSet>
+            <directory>dx-core/target/core/</directory>
+            <outputDirectory>lib/core</outputDirectory>
+            <fileMode>0644</fileMode>
+        </fileSet>
+
+        <fileSet>
+            <directory>dx-mock/target/mock/</directory>
+            <outputDirectory>lib/mock</outputDirectory>
+            <fileMode>0644</fileMode>
+        </fileSet>
+
+        <fileSet>
             <directory>${project.build.directory}/lib</directory>
             <includes>
                 <include>*.jar</include>
             </includes>
             <outputDirectory>lib/common</outputDirectory>
-            <fileMode>0755</fileMode>
+            <fileMode>0644</fileMode>
         </fileSet>
 
         <fileSet>
