@@ -1,0 +1,3 @@
+MY_URI (?:%{URIHOST}(,%{URIHOST})*|-)
+MY_RESP (?:%{NUMBER}(,%{NUMBER})*|-)
+MY_RESP_TIME (?:%{BASE10NUM}(,%{BASE10NUM})*|-)

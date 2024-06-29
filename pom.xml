@@ -20,7 +20,7 @@
         <spark.version>3.5.1</spark.version>
         <mysql.version>8.0.28</mysql.version>
         <typesafe.version>1.4.0</typesafe.version>
-        <jackson.version>2.12.3</jackson.version>
+        <jackson.version>2.15.3</jackson.version>
         <grok.version>0.1.9</grok.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <build.scope>provided</build.scope>
@@ -77,6 +77,11 @@
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-annotations</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
                 <version>${jackson.version}</version>
             </dependency>
 
