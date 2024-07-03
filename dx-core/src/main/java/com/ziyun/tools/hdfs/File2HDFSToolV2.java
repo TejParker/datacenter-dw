@@ -35,7 +35,7 @@ public class File2HDFSToolV2 {
             }
         }
 
-        String destDir = targetChildDir + "/" + targetChildDir;
+        String destDir = targetRootDir + "/" + targetChildDir;
         ensureHDFSDirExists(fileSystem, destDir);
         for (File file : fileSets) {
             fileSystem.moveFromLocalFile(new Path(file.getAbsolutePath()), new Path(destDir));
@@ -47,7 +47,7 @@ public class File2HDFSToolV2 {
 
     public static void ensureHDFSDirExists(FileSystem fileSystem,
                                            String dir) throws IOException {
-        if(fileSystem.exists(new Path(dir))) {
+        if(!fileSystem.exists(new Path(dir))) {
             fileSystem.mkdirs(new Path(dir));
         }
     }
@@ -81,8 +81,8 @@ public class File2HDFSToolV2 {
         String targetChildDir = commandLine.getOptionValue("s");
 
         Configuration conf = new Configuration();
-//        conf.addResource(new Path(hadoopConfDir + "/core-site.xml"));
-//        conf.addResource(new Path(hadoopConfDir + "/hdfs-site.xml"));
+        conf.addResource(new Path(hadoopConfDir + "/core-site.xml"));
+        conf.addResource(new Path(hadoopConfDir + "/hdfs-site.xml"));
         FileSystem fileSystem = FileSystem.get(conf);
 
         moveLocalToHDFS(fileSystem, localDir, filePattern, targetRootDir, targetChildDir);

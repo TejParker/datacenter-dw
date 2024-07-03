@@ -34,7 +34,7 @@ public class File2HDFSToolV1 {
             }
         }
 
-        String destDir = targetChildDir + "/" + targetChildDir;
+        String destDir = targetRootDir + "/" + targetChildDir;
         ensureHDFSDirExists(fileSystem, destDir);
         for (File file : fileSets) {
             fileSystem.moveFromLocalFile(new Path(file.getAbsolutePath()), new Path(destDir));
@@ -46,13 +46,15 @@ public class File2HDFSToolV1 {
 
     public static void ensureHDFSDirExists(FileSystem fileSystem,
                                            String dir) throws IOException {
-        if(fileSystem.exists(new Path(dir))) {
+        if(!fileSystem.exists(new Path(dir))) {
             fileSystem.mkdirs(new Path(dir));
         }
     }
 
     public static void main(String[] args) throws IOException {
-//        String hadoopConfDir = "";
+        // 解决权限报错问题：AccessControlException: Permission denied: user=lapla, access=WRITE, inode="/user":ziyun:supergroup:drwxr-xr-x
+        System.setProperty("HADOOP_USER_NAME", "ziyun");
+//        String hadoopConfDir = "src/main/resources";
         String localDIr = "data/src";
         String filePattern = ".*";
         String targetRootDir = "/data/ods/log";
@@ -61,8 +63,12 @@ public class File2HDFSToolV1 {
         Configuration conf = new Configuration();
 //        conf.addResource(new Path(hadoopConfDir + "/core-site.xml"));
 //        conf.addResource(new Path(hadoopConfDir + "/hdfs-site.xml"));
+        String s = conf.get("fs.defaultFS");
+        System.out.println("s = " + s);
         FileSystem fileSystem = FileSystem.get(conf);
 
         moveLocalToHDFS(fileSystem, localDIr, filePattern, targetRootDir, targetChildDir);
+
+        fileSystem.close();
     }
 }
