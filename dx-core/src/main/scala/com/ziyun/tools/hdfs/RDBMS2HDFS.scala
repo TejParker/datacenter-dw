@@ -1,6 +1,7 @@
 package com.ziyun.tools.hdfs
 
 import com.typesafe.config.{Config, ConfigFactory}
+import org.apache.spark.SparkFiles
 import org.apache.spark.sql.{SaveMode, SparkSession}
 
 import java.io.File
@@ -19,6 +20,10 @@ object RDBMS2HDFS {
     val config = ConfigFactory.parseFile(new File(configFile))
 
     val spark = SparkSession.builder().getOrCreate()
+    /*扩展在yarn-cluster模式下， 也能正确读取到参数指定的配置文件？
+    spark.sparkContext.addFile(configFile)
+
+    val configFileDown = SparkFiles.get(new File(args(0)).getName)*/
 
     val rdbmsConfig = config.getConfig("rdbms")
     val rdbmsProperties = getProperties(rdbmsConfig)
