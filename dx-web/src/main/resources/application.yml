@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    username: hive
+    password: hive@123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://bigdata:3306/dx
+  application:
+    name: data center
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+server:
+  port: 8080

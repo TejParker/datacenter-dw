@@ -12,6 +12,7 @@
         <module>dx-common</module>
         <module>dx-core</module>
         <module>dx-mock</module>
+        <module>dx-web</module>
     </modules>
 
     <properties>
@@ -25,6 +26,7 @@
         <hadoop.version>3.3.2</hadoop.version>
         <commons.version>1.4</commons.version>
         <antlr4.version>4.5.3</antlr4.version>
+        <spring.version>2.7.0</spring.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <build.scope>provided</build.scope>
     </properties>
@@ -125,6 +127,18 @@
                 <groupId>org.antlr</groupId>
                 <artifactId>antlr4-runtime</artifactId>
                 <version>${antlr4.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-jpa</artifactId>
+                <version>${spring.version}</version>
             </dependency>
             <!--<dependency>
                 <groupId>log4j</groupId>
